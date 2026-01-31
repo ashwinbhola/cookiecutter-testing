@@ -1,0 +1,7 @@
+# Add optional dependencies here.
+
+pytest
+pytest-cov
+ruff
+mypy
+bump-my-version

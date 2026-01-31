@@ -1,0 +1,52 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: 'pip' # Caching pip deps speeds up the run
+
+      - name: Install dependencies
+        run: make install-requirements
+
+      - name: Lint and Type Check
+        run: make lint
+
+      - name: Run Tests with 100% Coverage
+        # This will fail the build if coverage is < 100% due to our pyproject.toml settings
+        run: make test
+
+  release:
+    needs: quality-check
+    # Only run on main branch, not on Pull Requests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history for all tags and branches
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      
+      - name: Install dependencies
+        run: make install-requirements
+
+      - name: Execute Release
+        # This triggers git config, version bumping, and pushing tags
+        run: make release

@@ -1,0 +1,20 @@
+{
+  "template": "/Users/ashwinbhola/Documents/code/python-cookiecutter",
+  "commit": "d56048627050660f0101f550c4c21a5d8a7d784e",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Ashwin",
+      "email": "ab8084@nyu.edu",
+      "project_name": "cookiecutter testing",
+      "project_slug": "cookiecutter-testing",
+      "module_name": "cookiecutter_testing",
+      "short_description": "A python library for cookiecutter testing",
+      "python_version": "3.14",
+      "create_docs": "yes",
+      "_template": "/Users/ashwinbhola/Documents/code/python-cookiecutter",
+      "_commit": "d56048627050660f0101f550c4c21a5d8a7d784e"
+    }
+  },
+  "directory": null
+}
