@@ -3,14 +3,15 @@
 # ------------------------------------------------------------------------------
 PYTHON_VERSION = 3.14
 VENV           = .venv
-PART           ?= minor
+PART           ?= patch
 
-# Logic: Use the virtual environment if not running in GitHub Actions
 ifeq ($(GITHUB_ACTIONS), true)
-    PYTHON = python
-    PIP    = pip
-    BIN    = .
+    PYTHON := $(shell which python)
+    PIP    := $(shell which pip)
+    # On CI, the bin is the same dir as the python executable
+    BIN    := $(shell dirname $(PYTHON))
 else
+    VENV_EXISTS := $(shell [ -d $(VENV) ] && echo yes || echo no)
     BIN    = $(VENV)/bin
     PYTHON = $(BIN)/python
     PIP    = $(BIN)/pip
@@ -64,7 +65,7 @@ ifeq ($(GITHUB_ACTIONS), true)
 	@git config --global user.name "github-actions[bot]"
 	@git config --global user.email "github-actions[bot]@users.noreply.github.com"
 endif
-	git push origin main --tags
+	git push origin HEAD --tags
 
 reset-venv:  ## Wipe and recreate the virtual environment
 	rm -rf $(VENV)
