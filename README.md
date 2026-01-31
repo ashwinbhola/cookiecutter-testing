@@ -2,16 +2,13 @@
 
 A python library for cookiecutter testing
 
-### Set up the environment and install dependencies
-`make install-requirements`
+The `Makefile` handles everything. Just run:
 
-### Run tests with coverage
-`make test`
-
-### Format code
-`make fix-lint`
-
-### Bump version and release
-`make release`
-
-Run `make` to view all the commands.
+```bash
+make install-requirements  # Sets up a python env with all the installed dependencies
+make fix-lint  # Format code and fix lint errors
+make lint  # Run linting checks
+make test  # Run tests
+make bump part=minor  # Increment version
+make help  # View all make commands
+```
