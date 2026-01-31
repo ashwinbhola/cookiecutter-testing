@@ -1,6 +1,5 @@
 import os
 import sys
-from datetime import datetime
 
 # -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,

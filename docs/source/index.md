@@ -1,7 +1,6 @@
 # cookiecutter-testing
 
 ```{include} ../../README.md
-:relative:
 ```
 
 ---
