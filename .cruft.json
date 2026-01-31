@@ -1,6 +1,6 @@
 {
   "template": "/Users/ashwinbhola/Documents/code/python-cookiecutter",
-  "commit": "d56048627050660f0101f550c4c21a5d8a7d784e",
+  "commit": "4159bef5c66fcab82b5ab16cdf0a2dd63cd54484",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -13,7 +13,7 @@
       "python_version": "3.14",
       "create_docs": "yes",
       "_template": "/Users/ashwinbhola/Documents/code/python-cookiecutter",
-      "_commit": "d56048627050660f0101f550c4c21a5d8a7d784e"
+      "_commit": "4159bef5c66fcab82b5ab16cdf0a2dd63cd54484"
     }
   },
   "directory": null
