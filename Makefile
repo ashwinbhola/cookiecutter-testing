@@ -64,7 +64,7 @@ endif
 
 bump: venv git-config  ## Increment version (usage: make bump PART=patch)
 	$(BIN)/bump-my-version bump $(PART)
-	@echo "Version bumped to $$(grep '^version =' pyproject.toml | cut -d '\"' -f 2)"
+	@echo "Version bumped to: $$(grep '^version =' pyproject.toml | sed -E 's/.*["'\'']([^"'\'']+)["'\''].*/\1/')"
 
 release: bump  ## Setup git, bump version, and push tags (Safe for CI and Local)
 	git push origin HEAD --tags
