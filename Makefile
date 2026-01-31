@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 PYTHON_VERSION = 3.14
 VENV           = .venv
-PART           ?= patch
+PART           ?= minor
 
 ifeq ($(GITHUB_ACTIONS), true)
     # This ensures we use the exact python that is active in the environment
@@ -56,8 +56,8 @@ lint: venv  ## Audit code for linting and type safety
 test: venv  ## Run pytest with 100% coverage enforcement
 	$(PYTHON) -m pytest
 
-bump: venv  ## Increment version (usage: make bump part=patch)
-	$(BIN)/bump-my-version bump $(part)
+bump: venv  ## Increment version (usage: make bump PART=patch)
+	$(BIN)/bump-my-version bump $(PART)
 	@echo "Version bumped to $$(grep '^version =' pyproject.toml | cut -d '\"' -f 2)"
 
 release: bump  ## Setup git, bump version, and push tags (Safe for CI and Local)
