@@ -6,12 +6,12 @@ VENV           = .venv
 PART           ?= patch
 
 ifeq ($(GITHUB_ACTIONS), true)
+    # This ensures we use the exact python that is active in the environment
     PYTHON := $(shell which python)
     PIP    := $(shell which pip)
-    # On CI, the bin is the same dir as the python executable
     BIN    := $(shell dirname $(PYTHON))
 else
-    VENV_EXISTS := $(shell [ -d $(VENV) ] && echo yes || echo no)
+    VENV   = .venv
     BIN    = $(VENV)/bin
     PYTHON = $(BIN)/python
     PIP    = $(BIN)/pip
