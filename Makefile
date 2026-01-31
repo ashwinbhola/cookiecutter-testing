@@ -56,17 +56,18 @@ lint: venv  ## Audit code for linting and type safety
 test: venv  ## Run pytest with 100% coverage enforcement
 	$(PYTHON) -m pytest
 
-bump: venv  ## Increment version (usage: make bump PART=patch)
+git-config:
+ifeq ($(GITHUB_ACTIONS), true)
+	@git config --local user.name "github-actions[bot]"
+	@git config --local user.email "github-actions[bot]@users.noreply.github.com"
+endif
+
+bump: venv git-config  ## Increment version (usage: make bump PART=patch)
 	$(BIN)/bump-my-version bump $(PART)
 	@echo "Version bumped to $$(grep '^version =' pyproject.toml | cut -d '\"' -f 2)"
 
 release: bump  ## Setup git, bump version, and push tags (Safe for CI and Local)
-ifeq ($(GITHUB_ACTIONS), true)
-	@git config --global user.name "github-actions[bot]"
-	@git config --global user.email "github-actions[bot]@users.noreply.github.com"
-endif
-	git push origin HEAD
-	git push origin --tags
+	git push origin HEAD --tags
 
 reset-venv:  ## Wipe and recreate the virtual environment
 	rm -rf $(VENV)
