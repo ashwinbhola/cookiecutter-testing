@@ -73,13 +73,13 @@ reset-venv:  ## Wipe and recreate the virtual environment
 	rm -rf $(VENV)
 	$(MAKE) install-requirements
 
-docs: venv  ## Generate HTML documentation using Sphinx
+docs: venv ## Generate HTML documentation using Sphinx
 	@if [ -d "docs" ]; then \
-		$(PYTHON) -m sphinx.setup_command docs; \
+		echo "Generating documentation..."; \
 		$(BIN)/sphinx-build -b html docs/source docs/build; \
-		echo "Docs generated at: docs/build/index.html"; \
+		echo "✅ Docs generated at: docs/build/index.html"; \
 	else \
-		echo "Docs directory not found. Did you choose 'no' during project creation?"; \
+		echo "Docs directory not found."; \
 	fi
 
 update-cc:  ## Updates the project with cc that generated it
