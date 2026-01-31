@@ -65,7 +65,8 @@ ifeq ($(GITHUB_ACTIONS), true)
 	@git config --global user.name "github-actions[bot]"
 	@git config --global user.email "github-actions[bot]@users.noreply.github.com"
 endif
-	git push origin HEAD --tags
+	git push origin HEAD
+	git push origin --tags
 
 reset-venv:  ## Wipe and recreate the virtual environment
 	rm -rf $(VENV)
