@@ -1,5 +1,6 @@
 """Replace this with your project code."""
 
+
 def add_numbers(a: float, b: float) -> float:
     """Adds two integers.
 
