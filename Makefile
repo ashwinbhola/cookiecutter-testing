@@ -57,7 +57,7 @@ test: venv  ## Run pytest with 100% coverage enforcement
 	$(PYTHON) -m pytest
 
 bump: venv  ## Increment version (usage: make bump part=patch)
-	$(PYTHON) -m bump_my_version bump $(part)
+	$(BIN)/bump-my-version bump $(part)
 	@echo "Version bumped to $$(grep '^version =' pyproject.toml | cut -d '\"' -f 2)"
 
 release: bump  ## Setup git, bump version, and push tags (Safe for CI and Local)
